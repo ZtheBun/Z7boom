@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f1e8">
+  <title>Z7boom | 7 boom detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Saved custom booms">
+      <div class="brand-mark">Z7</div>
+      <div class="side-heading">
+        <h2>Saved booms</h2>
+      </div>
+
+      <div id="save-list" class="save-list" aria-live="polite"></div>
+
+      <button id="add-save-button" class="add-save-button" type="button">
+        <span class="button-symbol">+</span>
+        <span>Add save</span>
+      </button>
+      <div class="save-transfer-actions">
+        <button id="export-saves-button" class="transfer-button" type="button">Export</button>
+        <button id="import-saves-button" class="transfer-button" type="button">Import</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section class="detector-panel" aria-labelledby="detector-title">
+        <div class="panel-head">
+          <div>
+            <h2 id="detector-title">Test a number</h2>
+          </div>
+        </div>
+
+        <div class="counter-row">
+          <button id="decrement-button" class="step-button" type="button" aria-label="Decrease number">-</button>
+          <div class="number-display">
+            <label class="sr-only" for="number-input">Number to check</label>
+            <input id="number-input" type="number" inputmode="numeric" value="7" step="1" aria-describedby="number-hint">
+            <span id="number-hint" class="sr-only">Enter a whole number</span>
+          </div>
+          <button id="increment-button" class="step-button" type="button" aria-label="Increase number">+</button>
+        </div>
+
+        <div id="result-card" class="result-card is-boom" aria-live="polite">
+          <div class="result-main">
+            <span id="result-text">Boom</span>
+            <span id="result-detail">Contains 7</span>
+          </div>
+          <span class="result-arrow" aria-hidden="true">↗</span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <dialog id="save-dialog" class="save-dialog">
+    <form id="save-form" method="dialog">
+      <div class="dialog-heading">
+        <div>
+          <h2>Add a save</h2>
+        </div>
+        <button id="close-dialog-button" class="close-button" type="button" aria-label="Close">×</button>
+      </div>
+      <label for="save-name">Call name</label>
+      <input id="save-name" name="name" type="text" placeholder="e.g. בניו's boom" maxlength="40" required>
+      <label for="save-number">Number</label>
+      <input id="save-number" name="number" type="number" step="1" placeholder="67" required>
+      <div class="dialog-actions">
+        <button id="cancel-dialog-button" class="text-button" type="button">Cancel</button>
+        <button class="primary-button" type="submit">Save call</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="transfer-dialog" class="save-dialog">
+    <form id="import-form" method="dialog">
+      <div class="dialog-heading">
+        <div>
+          <h2>Import saves</h2>
+        </div>
+        <button id="close-import-button" class="close-button" type="button" aria-label="Close">×</button>
+      </div>
+      <label for="import-text">Saved message</label>
+      <textarea id="import-text" rows="7" placeholder="Paste an exported message here" required></textarea>
+      <p id="import-error" class="form-message" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="cancel-import-button" class="text-button" type="button">Cancel</button>
+        <button class="primary-button" type="submit">Import saves</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
